@@ -6,25 +6,32 @@ import {
   FaTwitter, FaInstagram, FaLinkedinIn, FaPaperPlane, FaHeadset 
 } from 'react-icons/fa6';
 import AOS from 'aos';
+import api from '../../services/api';
 
 const Contact = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setError('');
+    try {
+      await api.post('/contact', data);
       setSuccess(true);
       reset();
       setTimeout(() => setSuccess(false), 5000);
-    }, 1500);
+    } catch (err) {
+      console.error('Contact error:', err);
+      setError(err.response?.data?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -210,6 +217,12 @@ const Contact = () => {
                 {success && (
                   <div className="c-success-msg">
                     <FaPaperPlane /> Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+
+                {error && (
+                  <div className="alert alert-danger rounded-4 mb-4">
+                    {error}
                   </div>
                 )}
 
