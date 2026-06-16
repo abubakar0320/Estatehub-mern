@@ -8,6 +8,9 @@ dotenv.config();
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
 
+  // Disable buffering so we get immediate errors if not connected
+  mongoose.set('bufferCommands', false);
+
   try {
     let uri = process.env.MONGODB_URI;
     
@@ -17,8 +20,9 @@ const connectDB = async () => {
 
     try {
       const conn = await mongoose.connect(uri, { 
-        serverSelectionTimeoutMS: 5000,
+        serverSelectionTimeoutMS: 10000, // 10 seconds to find server
         socketTimeoutMS: 45000,
+        family: 4 // Force IPv4
       });
       console.log(`✅ Connected to MongoDB Database (EstateHub): ${conn.connection.host}`);
       
