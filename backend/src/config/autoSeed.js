@@ -110,8 +110,11 @@ export const autoSeed = async () => {
     }));
 
     await Property.insertMany(propertiesToInsert);
-    console.log(`\n🎉 Success! ${propData.length} properties have been automatically restored.`);
+    const finalCount = await Property.countDocuments();
+    console.log(`\n🎉 Success! ${propData.length} properties restored. Total in DB: ${finalCount}`);
+    return { success: true, count: propData.length, total: finalCount };
   } catch (error) {
     console.error('❌ Auto-seed failed:', error.message);
+    return { success: false, error: error.message };
   }
 };
