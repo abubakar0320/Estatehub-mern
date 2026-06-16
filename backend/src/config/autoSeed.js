@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import User from '../models/user.model.js';
 import Agent from '../models/agent.model.js';
@@ -56,6 +57,20 @@ const propData = [
 
 export const autoSeed = async () => {
   try {
+    // Ensure database is actually connected before querying
+    if (mongoose.connection.readyState !== 1) {
+      console.log('⏳ Database not ready, waiting...');
+      await new Promise((resolve) => {
+        const check = setInterval(() => {
+          if (mongoose.connection.readyState === 1) {
+            clearInterval(check);
+            resolve();
+          }
+        }, 500);
+        setTimeout(() => { clearInterval(check); resolve(); }, 5000); // 5s max wait
+      });
+    }
+
     const propertyCount = await Property.countDocuments();
     if (propertyCount > 0) {
       console.log('ℹ️ Database already contains data. Skipping auto-seed.');
