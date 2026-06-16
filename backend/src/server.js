@@ -66,13 +66,22 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/activity', activityRoutes);
 app.use('/api/contact', contactRoutes);
 
+import Property from './models/property.model.js';
+
 // Health Check
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'active', 
-    system: 'EstateHub MERN API', 
-    timestamp: new Date().toISOString() 
-  });
+app.get('/api/health', async (req, res) => {
+  try {
+    const count = await Property.countDocuments();
+    res.json({ 
+      status: 'active', 
+      system: 'EstateHub MERN API', 
+      database: 'Connected',
+      property_count: count,
+      timestamp: new Date().toISOString() 
+    });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
 });
 
 // 404 Handler
