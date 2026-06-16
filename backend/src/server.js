@@ -73,6 +73,23 @@ app.use('/api/contact', contactRoutes);
 
 import Property from './models/property.model.js';
 
+import { autoSeed } from './config/autoSeed.js';
+
+// Manual Data Restoration Trigger
+app.get('/api/force-seed', async (req, res) => {
+  try {
+    // Clear existing if any (optional, but ensures fresh start)
+    // await Property.deleteMany({});
+    const result = await autoSeed();
+    res.json({ 
+      message: 'Restoration process completed', 
+      detail: result 
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Health Check
 app.get('/api/health', async (req, res) => {
   try {
