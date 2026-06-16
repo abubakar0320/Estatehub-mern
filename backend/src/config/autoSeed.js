@@ -108,6 +108,7 @@ export const autoSeed = async () => {
         property_code: 'EST-' + uid(),
         views_count:   Math.floor(Math.random() * 500),
       });
+      console.log(`✅ Seeded: ${p.title}`);
     }
 
     console.log(`\n🎉 Success! ${propData.length} properties have been automatically restored.`);
