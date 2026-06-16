@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://estatehub.site/sitemap.xml
+
+# Disallow admin and tenant panels
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /tenant
+Disallow: /tenant/*

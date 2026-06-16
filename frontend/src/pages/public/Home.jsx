@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   FaArrowRight, FaMagnifyingGlass, FaLocationDot, FaBed, FaBath,
   FaVectorSquare, FaShield, FaRobot, FaFileInvoiceDollar, FaHeadset,
@@ -123,6 +124,26 @@ const Home = () => {
 
   return (
     <div style={{ background: '#f8fafc', fontFamily: "'Inter', system-ui, sans-serif", overflowX: 'hidden' }}>
+      <Helmet>
+        <title>EstateHub | Luxury Real Estate & Properties in Pakistan</title>
+        <meta name="description" content="Discover premium villas, apartments, and commercial properties in Pakistan. EstateHub connects you with verified listings and elite agents for a seamless real estate experience." />
+        <meta name="keywords" content="Real Estate Pakistan, Luxury Villas Lahore, Apartments for sale, Rent Property Pakistan, EstateHub" />
+        <link rel="canonical" href="https://estatehub.site/" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://estatehub.site/" />
+        <meta property="og:title" content="EstateHub | Luxury Real Estate & Properties in Pakistan" />
+        <meta property="og:description" content="Discover premium villas, apartments, and commercial properties in Pakistan. EstateHub connects you with verified listings and elite agents." />
+        <meta property="og:image" content="https://estatehub.site/og-image.jpg" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://estatehub.site/" />
+        <meta property="twitter:title" content="EstateHub | Luxury Real Estate & Properties in Pakistan" />
+        <meta property="twitter:description" content="Discover premium villas, apartments, and commercial properties in Pakistan." />
+        <meta property="twitter:image" content="https://estatehub.site/og-image.jpg" />
+      </Helmet>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');

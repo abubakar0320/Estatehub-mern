@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   FaUserTie, FaPhone, FaEnvelope, FaLocationDot, FaStar, 
   FaAward, FaBuilding, FaArrowRight, FaMagnifyingGlass
@@ -64,6 +65,12 @@ const Agents = () => {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <Helmet>
+        <title>Our Elite Agents | EstateHub - Real Estate Professionals</title>
+        <meta name="description" content="Connect with Pakistan's top-rated real estate agents. Our verified professionals provide expert guidance for buying, selling, and renting luxury properties." />
+        <meta name="keywords" content="Real estate agents Pakistan, Property dealers Lahore, Karachi real estate experts, EstateHub agents" />
+        <link rel="canonical" href="https://estatehub.site/agents" />
+      </Helmet>
       <style>{`
         .a-hero {
           position: relative; padding: 100px 0 80px; text-align: center;

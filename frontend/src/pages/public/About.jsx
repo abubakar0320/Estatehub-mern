@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { FaHeart, FaRocket, FaStar, FaBuilding, FaHandshake, FaArrowRight, FaShield, FaChartLine } from 'react-icons/fa6';
 import AOS from 'aos';
 
@@ -10,6 +11,11 @@ const About = () => {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', system-ui, sans-serif", overflowX: 'hidden' }}>
+      <Helmet>
+        <title>About Us | EstateHub - Pakistan's Premier Real Estate Platform</title>
+        <meta name="description" content="Learn about EstateHub's mission to redefine the real estate experience in Pakistan through transparency, innovation, and elite professional service." />
+        <link rel="canonical" href="https://estatehub.site/about" />
+      </Helmet>
       <style>{`
         .ab-hero {
           position: relative; padding: 120px 0 100px; text-align: center;

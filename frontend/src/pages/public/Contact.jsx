@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Helmet } from 'react-helmet-async';
 import { 
   FaLocationDot, FaPhone, FaEnvelope, FaFacebookF, 
   FaTwitter, FaInstagram, FaLinkedinIn, FaPaperPlane, FaHeadset 
@@ -28,6 +29,11 @@ const Contact = () => {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', system-ui, sans-serif", overflowX: 'hidden' }}>
+      <Helmet>
+        <title>Contact Us | EstateHub - 24/7 Real Estate Support</title>
+        <meta name="description" content="Get in touch with EstateHub for all your real estate inquiries. Our support team is available 24/7 to assist with buying, selling, or renting properties in Pakistan." />
+        <link rel="canonical" href="https://estatehub.site/contact" />
+      </Helmet>
       <style>{`
         .c-hero {
           position: relative; padding: 120px 0 100px; text-align: center;

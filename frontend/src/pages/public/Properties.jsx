@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   FaMagnifyingGlass, FaSliders, FaLocationDot, FaBed, FaBath, FaHeart,
   FaVectorSquare, FaCrown, FaBuilding, FaArrowUpRightFromSquare, FaFilter
@@ -90,6 +91,12 @@ const Properties = () => {
 
   return (
     <div style={{ background: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <Helmet>
+        <title>Browse Properties | EstateHub - Real Estate Inventory</title>
+        <meta name="description" content="Explore our extensive inventory of luxury homes, apartments, and commercial spaces. Use our advanced filters to find the perfect property in Lahore, Karachi, Islamabad and more." />
+        <meta name="keywords" content="Properties for sale Pakistan, Houses for rent, Real estate listings, EstateHub inventory" />
+        <link rel="canonical" href="https://estatehub.site/properties" />
+      </Helmet>
       <style>{`
         .p-btn-primary {
           background: linear-gradient(135deg, #16a34a, #22c55e);

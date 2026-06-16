@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { 
   FaLocationDot, FaBed, FaBath, FaKitchenSet, FaVectorSquare, 
   FaCalendarDays, FaEye, FaTag, FaCheck, FaPhone, FaEnvelope, 
@@ -67,11 +68,45 @@ const PropertyDetails = () => {
     );
   }
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    "name": property.title,
+    "description": property.description,
+    "url": window.location.href,
+    "image": getImageUrl(property.main_image),
+    "price": property.price,
+    "priceCurrency": "PKR",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": property.location_area,
+      "addressRegion": property.city,
+      "addressCountry": "PK"
+    }
+  };
+
   return (
     <div className="property-details-page bg-light min-vh-100 pb-5">
+      <Helmet>
+        <title>{`${property.title} | EstateHub`}</title>
+        <meta name="description" content={`${property.title} - ${property.bedrooms} Bed ${property.type} in ${property.location_area}, ${property.city}. Price: Rs. ${property.price?.toLocaleString()}. View more details on EstateHub.`} />
+        <link rel="canonical" href={`https://estatehub.site/properties/${id}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={`${property.title} | EstateHub`} />
+        <meta property="og:description" content={`${property.bedrooms} Bed ${property.type} in ${property.location_area}, ${property.city}. Rs. ${property.price?.toLocaleString()}.`} />
+        <meta property="og:image" content={getImageUrl(property.main_image)} />
+        <meta property="og:type" content="website" />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
       {/* Dynamic Header */}
       <section className="position-relative text-white overflow-hidden" style={{ height: '60vh' }}>
-        <img src={getImageUrl(property.main_image)} className="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt="Main" />
+        <img src={getImageUrl(property.main_image)} className="w-100 h-100 object-fit-cover position-absolute top-0 start-0" alt={property.title} />
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: 'linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 60%)' }}></div>
         <div className="container h-100 d-flex align-items-end pb-5 position-relative">
           <div className="w-100" data-aos="fade-up">
