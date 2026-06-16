@@ -83,34 +83,33 @@ export const autoSeed = async () => {
     console.log('✅ Categories synchronized');
 
     // 3. Properties
-    for (let i = 0; i < propData.length; i++) {
-      const p = propData[i];
-      await Property.create({
-        title:         p.title,
-        slug:          slug(p.title),
-        description:   p.desc,
-        price:         p.price,
-        type:          p.type,
-        status:        'Available',
-        bedrooms:      p.bed,
-        bathrooms:     p.bath,
-        kitchens:      p.kit,
-        area_size:     p.sz,
-        area_unit:     'Sq Ft',
-        city:          p.city,
-        location_area: p.area,
-        main_image:    gi(i),
-        gallery:       [],
-        features:      p.feats || [],
-        amenities:     p.amen || [],
-        category_id:   catDocs[p.cat],
-        is_featured:   p.feat,
-        property_code: 'EST-' + uid(),
-        views_count:   Math.floor(Math.random() * 500),
-      });
-      console.log(`✅ Seeded: ${p.title}`);
-    }
+    const propertiesToInsert = propData.map((p, i) => ({
+      title:         p.title,
+      slug:          slug(p.title),
+      description:   p.desc,
+      price:         p.price,
+      type:          p.type,
+      status:        'Available',
+      bedrooms:      p.bed,
+      bathrooms:     p.bath,
+      kitchens:      p.kit,
+      area_size:     p.sz,
+      area_unit:     'Sq Ft',
+      city:          p.city,
+      location_area: p.area,
+      main_image:    gi(i),
+      gallery:       [],
+      features:      p.feats || [],
+      amenities:     p.amen || [],
+      category_id:   catDocs[p.cat],
+      is_featured:   p.feat,
+      property_code: 'EST-' + uid(),
+      views_count:   Math.floor(Math.random() * 500),
+      created_at:    new Date(),
+      updated_at:    new Date()
+    }));
 
+    await Property.insertMany(propertiesToInsert);
     console.log(`\n🎉 Success! ${propData.length} properties have been automatically restored.`);
   } catch (error) {
     console.error('❌ Auto-seed failed:', error.message);

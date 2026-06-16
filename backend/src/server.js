@@ -48,6 +48,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root Route for Debugging
+app.get('/', (req, res) => {
+  res.send('<h1>EstateHub API is LIVE</h1><p>Use <b>/api/health</b> to check data status.</p>');
+});
+
 // Static files
 const uploadsPath = path.join(process.cwd(), 'uploads');
 if (!fs.existsSync(uploadsPath) && process.env.NODE_ENV !== 'production') {
