@@ -144,7 +144,14 @@ const Contact = () => {
 
         @media (max-width: 768px) {
           .c-hero { padding: 80px 0 60px; }
+          .c-hero h1 { font-size: 2.2rem !important; }
           .c-form-wrapper { padding: 30px 24px; }
+          .c-btn-submit { padding: 14px; font-size: 0.9rem; }
+          section { padding: 60px 0 !important; }
+        }
+        @media (max-width: 576px) {
+          .c-hero h1 { font-size: 1.8rem !important; }
+          .c-input { padding: 12px 16px; }
         }
       `}</style>
 

@@ -223,14 +223,25 @@ const Home = () => {
         .swiper-pagination-bullet-active { background: #16a34a !important; }
 
         @media (max-width: 768px) {
-          .h-hero-title { font-size: 2.1rem !important; }
-          .h-hero-grid  { flex-direction: column !important; }
-          .h-section-h2 { font-size: 2rem !important; }
+          .h-hero-title { font-size: 2.2rem !important; line-height: 1.2 !important; }
+          .h-hero-grid  { flex-direction: column !important; gap: 40px !important; }
+          .h-section-h2 { font-size: 1.8rem !important; }
+          .h-feature-card { padding: 20px !important; }
+          .h-stat-card { padding: 20px 10px !important; }
+          .h-stat-card div:nth-child(2) { font-size: 1.8rem !important; }
+          section { padding: 60px 0 !important; }
+          .h-hero-section { padding-top: 100px !important; padding-bottom: 50px !important; }
+        }
+
+        @media (max-width: 480px) {
+          .h-hero-title { font-size: 1.8rem !important; }
+          .h-btn-primary, .h-btn-outline { width: 100% !important; justify-content: center !important; }
+          .h-search-input { font-size: 0.85rem !important; }
         }
       `}</style>
 
       {/* ══════════════════ HERO ══════════════════ */}
-      <section style={{
+      <section className="h-hero-section" style={{
         position: 'relative', minHeight: '92vh', display: 'flex', alignItems: 'center',
         padding: '130px 0 80px', overflow: 'hidden',
         background: 'linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%)'

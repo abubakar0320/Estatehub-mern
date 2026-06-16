@@ -105,6 +105,14 @@ const About = () => {
         @media (max-width: 991px) {
           .ab-floating-card { left: 10px; bottom: 10px; padding: 16px; }
           .ab-hero { padding: 80px 0 60px; }
+          .ab-hero h1 { font-size: 2.2rem !important; }
+          section { padding: 60px 0 !important; }
+          .ab-stat-box h3 { font-size: 2rem !important; }
+        }
+        @media (max-width: 576px) {
+          .ab-hero h1 { font-size: 1.8rem !important; }
+          .ab-btn-primary { width: 100%; justify-content: center; }
+          .ab-image-wrapper { margin-top: 30px; }
         }
       `}</style>
 

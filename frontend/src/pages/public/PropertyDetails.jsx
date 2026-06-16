@@ -87,6 +87,21 @@ const PropertyDetails = () => {
 
   return (
     <div className="property-details-page bg-light min-vh-100 pb-5">
+      <style>{`
+        @media (max-width: 768px) {
+          .display-4 { font-size: 2.2rem !important; }
+          .property-details-page section:first-of-type { height: 50vh !important; }
+          .fw-extrabold { font-size: 1.5rem !important; }
+          .p-5 { padding: 25px !important; }
+          .sticky-top { position: relative !important; top: 0 !important; margin-top: 30px; }
+          .row.g-5 { --bs-gutter-y: 2rem !important; }
+        }
+        @media (max-width: 576px) {
+          .display-4 { font-size: 1.8rem !important; }
+          .btn-glass { padding: 8px 16px !important; font-size: 0.8rem !important; }
+          .badge { font-size: 0.7rem !important; }
+        }
+      `}</style>
       <Helmet>
         <title>{`${property.title} | EstateHub`}</title>
         <meta name="description" content={`${property.title} - ${property.bedrooms} Bed ${property.type} in ${property.location_area}, ${property.city}. Price: Rs. ${property.price?.toLocaleString()}. View more details on EstateHub.`} />

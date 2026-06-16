@@ -172,15 +172,25 @@ const Properties = () => {
         @media (max-width: 991px) {
           .p-sidebar-wrapper {
             position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.5); z-index: 1050; transition: left 0.3s ease;
+            background: rgba(15, 23, 42, 0.6); z-index: 2000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(4px);
             display: flex; align-items: center; justify-content: flex-start;
+            visibility: hidden; opacity: 0;
           }
-          .p-sidebar-wrapper.open { left: 0; }
+          .p-sidebar-wrapper.open { left: 0; visibility: visible; opacity: 1; }
           .p-sidebar {
-            width: 85%; max-width: 400px; height: 100%; border-radius: 0;
-            overflow-y: auto; padding: 24px; position: relative; top: 0;
+            width: 85%; max-width: 320px; height: 100%; border-radius: 0;
+            overflow-y: auto; padding: 30px 20px; position: relative; top: 0;
+            box-shadow: 20px 0 50px rgba(0,0,0,0.2);
           }
           .mobile-filter-toggle { display: flex; }
+          .p-hero h1 { font-size: 2.2rem !important; }
+        }
+
+        @media (max-width: 576px) {
+          .p-card img { height: 200px !important; }
+          .p-card h5 { font-size: 0.95rem !important; }
+          .p-hero { padding: 80px 0 60px !important; }
         }
       `}</style>
 
@@ -199,10 +209,11 @@ const Properties = () => {
       {/* Mobile Filter Toggle */}
       <div className="container mt-4 mobile-filter-toggle">
         <button 
-          className="p-btn-primary w-100" 
+          className="p-btn-primary w-100 shadow-lg" 
           onClick={() => setIsSidebarOpen(true)}
+          style={{ padding: '16px', borderRadius: '15px' }}
         >
-          <FaFilter /> Advanced Search Filters
+          <FaFilter /> Refine Your Search
         </button>
       </div>
 
