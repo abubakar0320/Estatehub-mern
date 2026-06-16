@@ -30,6 +30,13 @@ const propertySchema = new mongoose.Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
+// Performance Indexes
+propertySchema.index({ city: 1 });
+propertySchema.index({ type: 1 });
+propertySchema.index({ category_id: 1 });
+propertySchema.index({ price: 1 });
+propertySchema.index({ created_at: -1 });
+
 // Middleware to generate slug before saving
 propertySchema.pre('save', function(next) {
   if (this.isModified('title')) {
