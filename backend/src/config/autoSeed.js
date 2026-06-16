@@ -57,18 +57,10 @@ const propData = [
 
 export const autoSeed = async () => {
   try {
-    // Ensure database is actually connected before querying
+    // Direct connection inside the function to ensure it's ready
     if (mongoose.connection.readyState !== 1) {
-      console.log('⏳ Database not ready, waiting...');
-      await new Promise((resolve) => {
-        const check = setInterval(() => {
-          if (mongoose.connection.readyState === 1) {
-            clearInterval(check);
-            resolve();
-          }
-        }, 500);
-        setTimeout(() => { clearInterval(check); resolve(); }, 5000); // 5s max wait
-      });
+      await mongoose.connect(process.env.MONGODB_URI);
+      console.log('✅ Fresh connection established for seeding');
     }
 
     const propertyCount = await Property.countDocuments();
