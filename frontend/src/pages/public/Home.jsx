@@ -6,7 +6,7 @@ import {
   FaVectorSquare, FaShield, FaRobot, FaFileInvoiceDollar, FaHeadset,
   FaBuilding, FaStar, FaCrown, FaPhone, FaChartLine, FaKey,
   FaHouseChimney, FaCity, FaHandshake, FaCircleCheck,
-  FaArrowUpRightFromSquare, FaQuoteLeft, FaRocket
+  FaArrowUpRightFromSquare, FaQuoteLeft, FaRocket, FaUserTie
 } from 'react-icons/fa6';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -382,6 +382,21 @@ const Home = () => {
         </div>
       </section>
 
+      
+      {/* ══════════════════ TRUSTED PARTNERS ══════════════════ */}
+      <section style={{ padding: '30px 0', background: '#fff', borderBottom: '1px solid #f1f5f9' }}>
+        <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <p style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px' }}>Trusted by Pakistan's Top Developers</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '60px', flexWrap: 'wrap' }}>
+            <img src="https://www.google.com/s2/favicons?domain=emaar.com&sz=128" alt="Emaar" style={{ height: '50px', objectFit: 'contain' }} />
+            <img src="https://www.google.com/s2/favicons?domain=dhalahore.org&sz=128" alt="DHA" style={{ height: '50px', objectFit: 'contain', borderRadius: '50%' }} />
+            <img src="https://www.google.com/s2/favicons?domain=bahriatown.com&sz=128" alt="Bahria Town" style={{ height: '50px', objectFit: 'contain' }} />
+            <img src="https://www.google.com/s2/favicons?domain=habibrafiq.com&sz=128" alt="Habib Rafiq" style={{ height: '50px', objectFit: 'contain' }} />
+            <img src="https://www.google.com/s2/favicons?domain=zameen.com&sz=128" alt="Zameen" style={{ height: '50px', objectFit: 'contain' }} />
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════════ STATS ══════════════════ */}
       <section ref={statsRef} style={{ padding: '60px 0', background: '#fff', borderTop: '1px solid #f3f4f6', borderBottom: '1px solid #f3f4f6' }}>
         <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
@@ -422,6 +437,34 @@ const Home = () => {
                 </div>
                 <h5 style={{ color: '#0f172a', fontWeight: 700, margin: 0, fontSize: '1rem' }}>{cat.label}</h5>
                 <span style={{ color: cat.color, fontSize: '0.8rem', fontWeight: 700 }}>{cat.count}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      
+      {/* ══════════════════ TOP CITIES ══════════════════ */}
+      <section style={{ padding: '90px 0', background: '#fff' }}>
+        <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }} data-aos="fade-up">
+            <span className="h-section-tag"><FaLocationDot /> Locations</span>
+            <h2 className="h-section-h2" style={{ fontSize: '2.4rem', fontWeight: 900, color: '#0f172a' }}>
+              Explore Top <span style={{ color: '#16a34a' }}>Cities</span>
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+            {[
+              { name: 'Lahore', count: '450+', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80' },
+              { name: 'Islamabad', count: '320+', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80' },
+              { name: 'Karachi', count: '510+', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80' }
+            ].map((city, i) => (
+              <Link to={"/properties?city=" + city.name} key={i} data-aos="fade-up" data-aos-delay={i * 100} style={{ position: 'relative', height: '300px', borderRadius: '16px', overflow: 'hidden', textDecoration: 'none' }}>
+                <img src={city.img} alt={city.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} onMouseEnter={e => e.target.style.transform = 'scale(1.05)'} onMouseLeave={e => e.target.style.transform = 'scale(1)'} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '24px' }}>
+                  <h3 style={{ color: '#fff', fontSize: '1.8rem', fontWeight: 800, margin: 0 }}>{city.name}</h3>
+                  <p style={{ color: '#86efac', margin: 0, fontWeight: 600 }}>{city.count} Properties</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -516,6 +559,32 @@ const Home = () => {
         </div>
       </section>
 
+      
+      {/* ══════════════════ HOW IT WORKS ══════════════════ */}
+      <section style={{ padding: '90px 0', background: '#fff' }}>
+        <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }} data-aos="fade-up">
+            <span className="h-section-tag"><FaHandshake /> Process</span>
+            <h2 className="h-section-h2" style={{ fontSize: '2.4rem', fontWeight: 900, color: '#0f172a' }}>
+              How It <span style={{ color: '#16a34a' }}>Works</span>
+            </h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', textAlign: 'center' }}>
+            {[
+              { step: '01', title: 'Discover', desc: 'Browse our extensive verified property listings to find your match.' },
+              { step: '02', title: 'Schedule Visit', desc: 'Book a physical or virtual tour with our expert agents.' },
+              { step: '03', title: 'Close Deal', desc: 'Secure the paperwork transparently and move into your new home.' }
+            ].map((hw, i) => (
+              <div key={i} data-aos="fade-up" data-aos-delay={i * 100} style={{ padding: '30px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e5e7eb' }}>
+                <div style={{ fontSize: '3rem', fontWeight: 900, color: '#dcfce7', marginBottom: '16px', lineHeight: 1 }}>{hw.step}</div>
+                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>{hw.title}</h4>
+                <p style={{ color: '#64748b', fontSize: '0.9rem', lineHeight: 1.6 }}>{hw.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════════ WHY CHOOSE US ══════════════════ */}
       <section style={{ padding: '90px 0', background: '#f8fafc' }}>
         <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
@@ -568,6 +637,45 @@ const Home = () => {
                 <Link to="/properties" className="h-btn-outline">Browse Listings</Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      
+      {/* ══════════════════ ELITE AGENTS ══════════════════ */}
+      <section style={{ padding: '90px 0', background: '#f8fafc' }}>
+        <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '50px', flexWrap: 'wrap', gap: '16px' }} data-aos="fade-up">
+            <div>
+              <span className="h-section-tag"><FaUserTie /> Our Team</span>
+              <h2 className="h-section-h2" style={{ fontSize: '2.4rem', fontWeight: 900, color: '#0f172a', margin: 0 }}>
+                Meet Our <span style={{ color: '#16a34a' }}>Elite Agents</span>
+              </h2>
+            </div>
+            <Link to="/agents" className="h-btn-outline" style={{ padding: '10px 20px', borderRadius: '10px' }}>View All Agents</Link>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+            {[
+              { name: 'Ali Khan', role: 'Commercial Expert', sales: '120+', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80' },
+              { name: 'Sarah Ahmed', role: 'Luxury Villas', sales: '85+', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80' },
+              { name: 'Zainab Malik', role: 'Apartment Sales', sales: '200+', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80' }
+            ].map((agent, i) => (
+              <div key={i} data-aos="fade-up" data-aos-delay={i * 100} style={{ background: '#fff', borderRadius: '16px', padding: '24px', textAlign: 'center', border: '1px solid #e5e7eb', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
+                <img src={agent.img} alt={agent.name} style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', marginBottom: '16px', border: '3px solid #f0fdf4' }} />
+                <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', margin: '0 0 4px' }}>{agent.name}</h4>
+                <p style={{ color: '#16a34a', fontSize: '0.85rem', fontWeight: 600, margin: '0 0 16px' }}>{agent.role}</p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', borderTop: '1px solid #f1f5f9', paddingTop: '16px' }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>{agent.sales}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#64748b', textTransform: 'uppercase' }}>Properties Sold</div>
+                  </div>
+                  <div style={{ width: '1px', background: '#f1f5f9' }} />
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', color: '#fbbf24', fontSize: '0.9rem' }}><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
