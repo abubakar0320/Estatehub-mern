@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import PropertyCategory from './src/models/propertyCategory.model.js';
 import Property from './src/models/property.model.js';
 
-const MONGO_URI = 'mongodb://127.0.0.1:27017/estatehub';
+const MONGO_URI = 'mongodb+srv://admin:EstateHub2024@cluster0.colawbf.mongodb.net/estatehub';
 
 const categories = [
   { name: 'House',      description: 'Standalone residential houses' },

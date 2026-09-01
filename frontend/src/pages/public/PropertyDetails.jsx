@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa6';
 import AOS from 'aos';
 import api from '../../services/api';
+import { dummyProperties } from '../../utils/dummyData';
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -29,6 +30,12 @@ const PropertyDetails = () => {
       fetchSimilar(response.data.category_id?._id || response.data.category_id);
     } catch (error) {
       console.error('Error fetching property dossier:', error);
+      console.log('Falling back to dummy data');
+      const dummy = dummyProperties.find(p => p.id === id || p._id === id);
+      if (dummy) {
+        setProperty(dummy);
+        fetchSimilar(dummy.category_name);
+      }
     } finally {
       setLoading(false);
     }
@@ -40,6 +47,7 @@ const PropertyDetails = () => {
       setSimilarProperties(response.data.filter(p => (p.id || p._id) !== id).slice(0, 3));
     } catch (error) {
       console.error('Error fetching similar assets:', error);
+      setSimilarProperties(dummyProperties.filter(p => (p.id || p._id) !== id).slice(0, 3));
     }
   };
 

@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa6';
 import AOS from 'aos';
 import api from '../../services/api';
+import { dummyProperties } from '../../utils/dummyData';
 
 const Properties = () => {
   const [maxPrice, setMaxPrice] = useState(150000000);
@@ -66,7 +67,11 @@ const Properties = () => {
       setProperties(propList);
     } catch (error) {
       console.error('Error fetching properties:', error);
-      setProperties([]);
+      console.log('Falling back to dummy data for GitHub/Production demo');
+      let filtered = dummyProperties;
+      if (currentFilters.city) filtered = filtered.filter(p => p.city.toLowerCase() === currentFilters.city.toLowerCase());
+      if (currentFilters.type) filtered = filtered.filter(p => p.type.toLowerCase() === currentFilters.type.toLowerCase());
+      setProperties(filtered);
     } finally {
       setLoading(false);
     }

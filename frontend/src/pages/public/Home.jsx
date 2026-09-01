@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import AOS from 'aos';
 import api from '../../services/api';
+import { dummyProperties, dummyAgents } from '../../utils/dummyData';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -78,6 +79,9 @@ const Home = () => {
       setStats({ properties: propList.length, agents: agentList.length, clients: 1250 });
     } catch (err) {
       console.error('Error fetching home data:', err);
+      console.log('Falling back to dummy data for GitHub/Production demo');
+      setFeaturedProperties(dummyProperties.filter(p => p.is_featured).slice(0, 3));
+      setStats({ properties: dummyProperties.length, agents: dummyAgents.length, clients: 1250 });
     } finally {
       setLoading(false);
     }
@@ -159,7 +163,7 @@ const Home = () => {
           cursor: pointer; transition: all 0.3s; text-decoration: none;
           display: inline-flex; align-items: center; gap: 9px; box-shadow: 0 4px 14px rgba(22,163,74,0.3);
         }
-        .h-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(22,163,74,0.35); filter: brightness(1.05); }
+        .h-btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 28px rgba(22,163,74,0.35); filter: brightness(1.05); }
 
         .h-btn-outline {
           background: #fff; color: #374151 !important;
@@ -168,7 +172,7 @@ const Home = () => {
           cursor: pointer; transition: all 0.3s; text-decoration: none;
           display: inline-flex; align-items: center; gap: 9px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);
         }
-        .h-btn-outline:hover { border-color: #16a34a; color: #16a34a !important; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+        .h-btn-outline:hover { border-color: #16a34a; color: #16a34a !important; transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
 
         .h-section-tag {
           display: inline-flex; align-items: center; gap: 7px;
@@ -190,7 +194,7 @@ const Home = () => {
           border: 1px solid #e5e7eb; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
           transition: all 0.3s ease; position: relative; overflow: hidden;
         }
-        .h-feature-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,0.1); }
+        .h-feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(22,163,74,0.08); }
 
         .h-search-input {
           width: 100%; padding: 13px 16px; border-radius: 10px;
@@ -202,11 +206,11 @@ const Home = () => {
         .h-search-input option { background: #fff; color: #111827; }
 
         .h-stat-card {
-          text-align: center; padding: 28px 16px; background: #fff;
-          border: 1px solid #e5e7eb; border-radius: 18px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s;
+          text-align: center; padding: 32px 16px; background: rgba(255,255,255,0.9);
+          border: 1px solid #e5e7eb; border-radius: 24px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px);
         }
-        .h-stat-card:hover { border-color: #86efac; transform: translateY(-4px); box-shadow: 0 12px 28px rgba(22,163,74,0.12); }
+        .h-stat-card:hover { border-color: #86efac; transform: translateY(-8px); box-shadow: 0 20px 40px rgba(22,163,74,0.12); background: #fff; }
 
         .h-testimonial-card {
           background: #fff; border: 1px solid #e5e7eb; border-radius: 20px;
@@ -227,7 +231,11 @@ const Home = () => {
           .h-hero-grid  { flex-direction: column !important; gap: 40px !important; }
           .h-section-h2 { font-size: 1.8rem !important; }
           .h-feature-card { padding: 20px !important; }
-          .h-stat-card { padding: 20px 10px !important; }
+          .h-stat-card {
+          text-align: center; padding: 32px 16px; background: rgba(255,255,255,0.9);
+          border: 1px solid #e5e7eb; border-radius: 24px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px);
+        }
           .h-stat-card div:nth-child(2) { font-size: 1.8rem !important; }
           section { padding: 60px 0 !important; }
           .h-hero-section { padding-top: 100px !important; padding-bottom: 50px !important; }
@@ -247,9 +255,9 @@ const Home = () => {
         background: 'linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%)'
       }}>
         {/* Decorative blobs */}
-        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '420px', height: '420px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22,163,74,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '-80px', left: '-80px', width: '380px', height: '380px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: '30%', left: '40%', width: '250px', height: '250px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '420px', height: '420px', borderRadius: '50%', background: 'rgba(22,163,74,0.15)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-80px', left: '-80px', width: '380px', height: '380px', borderRadius: '50%', background: 'rgba(124,58,237,0.1)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '30%', left: '40%', width: '250px', height: '250px', borderRadius: '50%', background: 'rgba(37,99,235,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
         <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
           <div className="h-hero-grid" style={{ display: 'flex', alignItems: 'center', gap: '60px', flexWrap: 'wrap' }}>
@@ -302,7 +310,7 @@ const Home = () => {
 
             {/* Right — Search Card */}
             <div style={{ flex: '0 1 420px', width: '100%' }} data-aos="fade-left" data-aos-delay="150">
-              <div style={{ background: '#fff', borderRadius: '24px', padding: '36px', boxShadow: '0 20px 60px rgba(0,0,0,0.1)', border: '1px solid #e5e7eb' }}>
+              <div style={{ background: 'rgba(255,255,255,0.85)', borderRadius: '24px', padding: '36px', boxShadow: '0 20px 60px rgba(22,163,74,0.08)', border: '1px solid rgba(255,255,255,0.5)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                   <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: '#f0fdf4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <FaMagnifyingGlass style={{ color: '#16a34a', fontSize: '1rem' }} />
@@ -542,8 +550,7 @@ const Home = () => {
         <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
           <div data-aos="zoom-in" style={{
             borderRadius: '28px', padding: '64px 48px', textAlign: 'center',
-            background: 'linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%)',
-            border: '1.5px solid #e5e7eb', position: 'relative', overflow: 'hidden',
+            background: 'linear-gradient(135deg, rgba(240,253,244,0.9) 0%, rgba(239,246,255,0.9) 50%, rgba(253,244,255,0.9) 100%)', border: '1.5px solid rgba(255,255,255,0.6)', backdropFilter: 'blur(20px)', position: 'relative', overflow: 'hidden',
             boxShadow: '0 8px 32px rgba(0,0,0,0.06)'
           }}>
             <div style={{ position: 'absolute', top: '-50px', left: '-50px', width: '180px', height: '180px', borderRadius: '50%', background: 'rgba(22,163,74,0.08)', filter: 'blur(30px)' }} />
